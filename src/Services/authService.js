@@ -40,7 +40,7 @@ export async function savePassword(user) {
 export async function changePassword(user) {
   return http.post(`${apiUrl}change_password.php`, {
     id: user.id,
-    password: user.old_password,
+    old_password: user.old_password,
     password: user.password,
   });
 }
