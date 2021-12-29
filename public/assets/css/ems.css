@@ -253,7 +253,9 @@
 } */
 .slick-prev:before,
 .slick-next:before {
-  color: #e2521a !important;
+  color: #f5f5f5 !important;
+  font-size: 26px !important;
+  font-weight: 1000;
 }
 
 .product-style-03 img {

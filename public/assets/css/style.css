@@ -2578,8 +2578,9 @@ ul {
   line-height: 35px;
   top: 4px;
   position: absolute;
-  background: white;
-  padding:20px;
+  background: rgb(0 0 0 / 85%);
+  padding: 8px 13px;
+  border-radius: 180px
 }
 .banner-style-01:hover .slick-prev,
 .banner-style-01:hover .slick-next {
