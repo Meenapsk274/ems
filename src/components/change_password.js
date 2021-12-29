@@ -54,16 +54,30 @@ class ChangePassword extends Component {
   };
 
   render() {
+    let publicUrl = process.env.PUBLIC_URL + "/";
     return (
       <div>
         <Navbar />
         <PageHeader headertitle="Change Password" />
-        <div className="align-center">
-          <section className="loginBlock">
-            <div className="container container-login">
-              <div className="row">
-                <div className=" col-xl-4 col-lg-3 col-md-3 col-sm-2 col-12 col-md-offset-4"></div>
-                <div className="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 col-md-offset-4">
+        <div className="blog-area margin-top-65">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-2 col-md-12"></div>
+            <div className="col-lg-12 col-md-12 profile-content">
+                <div className="row">
+                    <div className="col-lg-3 col-md-4">
+                        <div className="user-div">
+                        <h4 className="user3-details profile-head profile-detail">Personal Details</h4>
+                            <img className="user-img" src={publicUrl + "assets/img/user.png"} alt=""/>
+                            <div className="user3-details">
+                              <p><span className="user-title">Name:</span> example name</p>
+                              <p><span className="user-title">E-Mail:</span> example@gmail.com</p> 
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-9 col-md-8 margin-top-10">
+                      <div className="row user-div user3-details">
+                      <div className="col-xl-6 col-lg-5 col-md-6 col-sm-8 col-12 align-self-center">
                   <div className="account-wall div-border">
                   <i class="fa fa-key register-user" aria-hidden="true"></i>
                     <h3 className="pb-2">Change Password</h3>
@@ -152,9 +166,13 @@ class ChangePassword extends Component {
                     </Form>
                   </div>
                 </div>
+                      </div>
+                    </div>			
+                  </div>  
+                <br />
               </div>
             </div>
-          </section>
+          </div>
         </div>
         <Footer />
       </div>
