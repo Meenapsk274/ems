@@ -75,9 +75,9 @@ class ChangePassword extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-9 col-md-8 margin-top-10">
-                      <div className="row user-div user3-details">
-                      <div className="col-xl-6 col-lg-5 col-md-6 col-sm-8 col-12 align-self-center">
+                    <div className="col-lg-9 col-md-8 margin-top-10 align-center">
+                      <div className="row user-div user3-details justify-content-center">
+                      <div className="col-xl-6 col-lg-5 col-md-6 col-sm-8 col-12">
                   <div className="account-wall div-border">
                   <i class="fa fa-key register-user" aria-hidden="true"></i>
                     <h3 className="pb-2">Change Password</h3>
