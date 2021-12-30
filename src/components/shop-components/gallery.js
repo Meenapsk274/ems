@@ -47,7 +47,7 @@ class Gallery extends Component {
     const result = await homeServices.getAlbums();
     // const imgresults = await homeServices.getAlbumImages();
     this.setState({ albums: result.data.records });
-    console.log(result.data.records)
+    console.log(result.data.records);
     // this.setState({ images: imgresults.data });
   }
 
@@ -93,12 +93,7 @@ class Gallery extends Component {
   };
 
   render() {
-    const {
-      filteredMonth,
-      filteredYear,
-      pageSize,
-      currentPage
-    } = this.state;
+    const { filteredMonth, filteredYear, pageSize, currentPage } = this.state;
 
     const monthNameList = moment.monthsShort();
 
@@ -120,7 +115,6 @@ class Gallery extends Component {
       <div className="collection-area">
         <div className="container">
           <div className="row ">
-            
             <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 margin-top-20">
               <div className="widget search-widget">
                 <form className="search" action="#">
@@ -226,7 +220,8 @@ class Gallery extends Component {
                 <div className="col-md-12">
                   <div className="d-flex justify-content-between pagination">
                     <h6>
-                    {paginateInfo(filteredGallerys, currentPage, pageSize)} Albums
+                      {paginateInfo(filteredGallerys, currentPage, pageSize)}{" "}
+                      Albums
                     </h6>
 
                     <Pagination
@@ -253,8 +248,7 @@ class Gallery extends Component {
                             </span>
                           </div>
                           <h6 className="title stone-go-top  margin-top-20">
-                            <span onClick={this.handleOpen
-                              (album.gallery)}>
+                            <span onClick={this.handleOpenModal(album.gallery)}>
                               {album.title}
                             </span>
                           </h6>
@@ -269,7 +263,8 @@ class Gallery extends Component {
                 <div className="col-md-12">
                   <div className="d-flex justify-content-between pagination">
                     <h6>
-                    {paginateInfo(filteredGallerys, currentPage, pageSize)} Albums
+                      {paginateInfo(filteredGallerys, currentPage, pageSize)}{" "}
+                      Albums
                     </h6>
 
                     <Pagination
@@ -284,19 +279,20 @@ class Gallery extends Component {
             </div>
           </div>
         </div>
-
-        <Modal
-          isOpen={this.state.showModal}
-          // onAfterOpen={afterOpenModal}
-          onRequestClose={this.handleCloseModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <button align="right" onClick={this.handleCloseModal}>
-            X
-          </button>
-          <ImageGallery items={this.state.galleryImages} />
-        </Modal>
+        {this.state.galleryImages.length > 0 && (
+          <Modal
+            isOpen={this.state.showModal}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={this.handleCloseModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <button align="right" onClick={this.handleCloseModal}>
+              X
+            </button>
+            <ImageGallery items={this.state.galleryImages} />
+          </Modal>
+        )}
       </div>
     );
   }
