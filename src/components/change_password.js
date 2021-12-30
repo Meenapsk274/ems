@@ -37,6 +37,17 @@ class ChangePassword extends Component {
       },
     });
   };
+  failure = () => {
+    message.success({
+      content:
+        "Try Again!",
+      duration: 10,
+      className: "custom-class",
+      style: {
+        marginTop: "40vh",
+      },
+    });
+  };
   onFinish = async (values) => {
     let queries = queryString.parse(this.props.location.search);
 
@@ -47,10 +58,14 @@ class ChangePassword extends Component {
     try {
       const response = await authServices.changePassword(values);
       if (response.status >= 200) {
-        console.log("success");
-        this.success();
-        this.props.history.push("/change_password");
-        // } else {
+        if (response.data === 1) {
+          console.log("success");
+          this.success();
+          this.props.history.push("/profile");
+         } else {
+          this.failure();
+          this.props.history.push("/change_password");
+         }
       } else {
         this.props.history.push("/change_password");
       }

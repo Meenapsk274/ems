@@ -27,7 +27,7 @@ import {
 const { Option } = Select;
 // import * as employeeServices from "../services/employeeServices";
 
-class RegisterForm extends Component {
+class EditBio extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,43 +59,7 @@ class RegisterForm extends Component {
   selectRegion(val) {
     this.setState({ region: val });
   }
-  ErrorMessage(msg) {
-    const modal = Modal.success({
-      title: "Already Exist Details!",
-      content: msg,
-    });
-  }
-  checkEmail = async (email) => {
-    if (email !== "") {
-      const response = await authServices.checkEmailAlreadyExist(email);
-      if (response.status >= 200) {
-        if (response.data.status === "2") {
-          this.ErrorMessage(
-            `This "${email}" email already exist. Give new E-mail...`
-          );
-          document.getElementById("register_email").value = "";
-        } else {
-        }
-      }
-    }
-  };
-  checkUsername = async (username) => {
-    console.log(username);
-    if (username !== "") {
-      const response = await authServices.checkUsernameAlreadyExist(username);
-      if (response.status >= 200) {
-        if (response.data.status === "2") {
-          this.ErrorMessage(
-            `This "${username}" username already exist. Give new username...`
-          );
-          this.checkUsername("");
-          this.setState({ username: "qqqq" });
-          //document.getElementById("register_username").value = "";
-        } else {
-        }
-      }
-    }
-  };
+  
 
   success = () => {
     message.success({
@@ -108,20 +72,36 @@ class RegisterForm extends Component {
       },
     });
   };
+  failure = () => {
+    message.success({
+      content:
+        "Try Again!",
+      duration: 10,
+      className: "custom-class",
+      style: {
+        marginTop: "40vh",
+      },
+    });
+  };
   onFinish = async (values) => {
     values.dateOfBirth = this.state.dateOfBirth;
     values.dateOfBaiyath = this.state.dateOfBaiyath;
+    values.userid = this.state.user.id;
 
     try {
-      const response = await authServices.saveUser(values);
+      const response = await authServices.editUser(values);
       if (response.status >= 200) {
-        // if (response.data === 1) {
-        console.log("success");
-        this.success();
-        this.props.history.push("/login");
-        // } else {
+        if (response.data === 1) {
+          console.log("success");
+          this.success();
+          this.props.history.push("/profile");
+        } else {
+          this.failure();
+          this.props.history.push("/edit_bio");
+        }
+
       } else {
-        this.props.history.push("/register");
+        this.props.history.push("/edit_bio");
       }
     } catch (ex) {
       const errors = { ...this.state.errors };
@@ -140,15 +120,15 @@ class RegisterForm extends Component {
       <div>
         <Navbar />
         <PageHeader headertitle="Register" />
-        <section className="loginBlock">
+        <section className="">
           <div className="container">
-            <div className="row register-form margin-top-40 justify-content-center">
+            <div className="row register-form margin-top-40">
             <div className="col-xl-3 col-lg-4 col-md-6 ">
                 <div className="user-div margin-top-20">
                     <h4 className="user3-details profile-head profile-detail">Personal Details</h4>
                     <img className="user-img" src={publicUrl + "assets/img/user.png"} alt=""/>
                     <div className="user3-details">
-                        <p><span className="user-title">Name:</span>{user.name}</p>
+                        <p><span className="user-title">Name:</span> {user.name}</p>
                         <p><span className="user-title">E-Mail:</span> {user.email}</p> 
                     </div>
                 </div>
@@ -156,7 +136,7 @@ class RegisterForm extends Component {
               <div className="col-xl-9 col-lg-8 col-md-12">
                 <div className="account-wall div-border" id="register_form">
                 
-                  <h3 className="text-center">Add Your Account Details</h3>
+                  <h3 className="text-center">Edit Your Account Details</h3>
                   <Form
                     name="register"
                     onFinish={this.onFinish}
@@ -171,6 +151,7 @@ class RegisterForm extends Component {
                         <Form.Item
                           name="fatherName"
                           label="Father Name"
+                          value={user.father_name}
                           rules={[
                             {
                               required: true,
@@ -229,6 +210,15 @@ class RegisterForm extends Component {
                       </div>
                     </div>
                     <div className="row">
+                    <div className="col-lg-6 col-md-6">
+                        <Form.Item
+                          name="dateOfBirth"
+                          label="Date Of Birth"
+                          hasFeedback
+                        >
+                          <DatePicker onChange={this.handleBirthChange} />
+                        </Form.Item>
+                      </div>
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="dateOfBaiyath"
@@ -238,7 +228,10 @@ class RegisterForm extends Component {
                           <DatePicker onChange={this.handleBaiyathChange} />
                         </Form.Item>
                       </div>
-                      <div className="col-lg-6 col-md-6">
+                      
+                    </div>
+                    <div className="row">
+                    <div className="col-lg-6 col-md-6">
                         <Form.Item name="bloodGroup" label="Blood Group">
                           <Select
                             className="ant-input"
@@ -253,8 +246,6 @@ class RegisterForm extends Component {
                           </Select>
                         </Form.Item>
                       </div>
-                    </div>
-                    <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="gender"
@@ -276,7 +267,9 @@ class RegisterForm extends Component {
                           </Select>
                         </Form.Item>
                       </div>
-                      <div className="col-lg-6 col-md-6">
+                    </div>
+                    <div className="row">
+                    <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="yaseeni"
                           label="Are you a Yaseeni ?"
@@ -288,28 +281,6 @@ class RegisterForm extends Component {
                           </Select>
                         </Form.Item>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="presentAddress"
-                          label="Present Address"
-                          hasFeedback
-                        >
-                          <Input.TextArea />
-                        </Form.Item>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="permanentAddress"
-                          label="Permanent Address"
-                          hasFeedback
-                        >
-                          <Input.TextArea />
-                        </Form.Item>
-                      </div>
-                    </div>
-                    <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="country"
@@ -328,6 +299,10 @@ class RegisterForm extends Component {
                           />
                         </Form.Item>
                       </div>
+                      
+                      
+                    </div>
+                    <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="state"
@@ -349,8 +324,6 @@ class RegisterForm extends Component {
                           />
                         </Form.Item>
                       </div>
-                    </div>
-                    <div className="row">
                       <div className="col-md-6">
                         <Form.Item
                           name="city"
@@ -360,16 +333,52 @@ class RegisterForm extends Component {
                           <Input />
                         </Form.Item>
                       </div>
+                    </div>
+                    <div className="row">
+                      
+                      <div className="col-lg-6 col-md-6">
+                        <Form.Item
+                          name="contactNo"
+                          label="Contact Number"
+                          hasFeedback
+                        >
+                          <Input />
+                        </Form.Item>
+                      </div>
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="alternateNo"
                           label="Alternate Number"
+                          value={user.alt_phone}
                           hasFeedback
                         >
                           <Input />
                         </Form.Item>
                       </div>
                     </div>
+                    <div className="row">
+                    <div className="col-lg-6 col-md-6">
+                        <Form.Item
+                          name="presentAddress"
+                          label="Present Address"
+                          hasFeedback
+                        >
+                          <Input.TextArea />
+                        </Form.Item>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                        <Form.Item
+                          name="permanentAddress"
+                          label="Permanent Address"
+                          hasFeedback
+                        >
+                          <Input.TextArea />
+                        </Form.Item>
+                      </div>
+                      
+                      
+                    </div>
+                    
                     <div className="row">
                       <Form.Item>
                         <center>
@@ -396,4 +405,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+export default EditBio;

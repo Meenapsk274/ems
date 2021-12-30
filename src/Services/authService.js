@@ -66,6 +66,7 @@ export async function sendSubscriberEmail(user) {
 export function saveUser(user) {
   // console.log("User services log:", data);
   return http.post(`${apiUrl}register.php`, {
+    
     alternateNo: user.alternateNo,
     contactNo: user.contactNo,
     bloodGroup: user.bloodGroup,
@@ -86,6 +87,28 @@ export function saveUser(user) {
     qualification: user.qualification,
     yaseeni: user.yaseeni,
     username: user.username,
+  });
+}
+export function editUser(user) {
+  // console.log("User services log:", data);
+  return http.post(`${apiUrl}edit_user.php`, {
+    userid: user.userid,
+    alternateNo: user.alternateNo,
+    contactNo: user.contactNo,
+    bloodGroup: user.bloodGroup,
+    country: user.country,
+    state: user.state,
+    city: user.city,
+    dateOfBirth: user.dateOfBirth,
+    dateOfBaiyath: user.dateOfBaiyath,
+    fatherName: user.fatherName,
+    gender: user.gender,
+    permanentAddress: user.permanentAddress,
+    presentAddress: user.presentAddress,
+    ug: user.ug,
+    pg: user.pg,
+    qualification: user.qualification,
+    yaseeni: user.yaseeni,
   });
 }
 

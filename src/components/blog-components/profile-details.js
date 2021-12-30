@@ -179,7 +179,7 @@ class FounderDetails extends Component {
                                
                               </div>
                               <div className="col-lg-6 col-md-6 col-6">
-                                <a href="#/edit_bio" className="btn btn-blue hcolor-white"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
+                                <a href="#/edit_bio" className="btn btn-blue hcolor-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                               </div>
                             </div>
                             
