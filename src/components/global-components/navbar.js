@@ -235,7 +235,7 @@ class Navbar extends Component {
               <div className="news_content">
                 <div className="row justify-content-center">
                   <div className="col-xl-8 col-sm-12">
-                  <marquee >
+                  <marquee onmouseover="this.stop();" onmouseout="this.start();">
                   {moto.map((single_moto) => (
                     single_moto.url=='' ?
                   <span className="news_line">{single_moto.moto_content}</span>
@@ -338,7 +338,7 @@ class Navbar extends Component {
               <div className="news_content">
                 <div className="row justify-content-center">
                   <div className="col-xl-10 col-sm-12">
-                  <marquee>
+                  <marquee onmouseover="this.stop();" onmouseout="this.start();">
                   {moto.map((single_moto) => (
                     
                     single_moto.url=='#' ?
