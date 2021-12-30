@@ -37,17 +37,7 @@ class ChangePassword extends Component {
       },
     });
   };
-  failure = () => {
-    message.success({
-      content:
-        "Try Again!",
-      duration: 10,
-      className: "custom-class",
-      style: {
-        marginTop: "40vh",
-      },
-    });
-  };
+
   onFinish = async (values) => {
     let queries = queryString.parse(this.props.location.search);
 
@@ -62,10 +52,17 @@ class ChangePassword extends Component {
           console.log("success");
           this.success();
           this.props.history.push("/profile");
-         } else {
-          this.failure();
+        } else {
+          message.error({
+            content: "Failed. Try Again!",
+            duration: 3,
+            className: "ant-message-error-bg",
+            style: {
+              marginTop: "40vh",
+            },
+          });
           this.props.history.push("/change_password");
-         }
+        }
       } else {
         this.props.history.push("/change_password");
       }
@@ -84,115 +81,127 @@ class ChangePassword extends Component {
         <Navbar />
         <PageHeader headertitle="Change Password" />
         <div className="blog-area margin-top-65">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-2 col-md-12"></div>
-            <div className="col-lg-12 col-md-12 profile-content">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-2 col-md-12"></div>
+              <div className="col-lg-12 col-md-12 profile-content">
                 <div className="row">
-                    <div className="col-lg-3 col-md-4">
-                        <div className="user-div">
-                          <h4 className="user3-details profile-head profile-detail">Personal Details</h4>
-                            <img className="user-img" src={publicUrl + "assets/img/user.png"} alt=""/>
-                            <div className="user3-details">
-                              <p><span className="user-title">Name:</span> {user.name}</p>
-                              <p><span className="user-title">E-Mail:</span> {user.email}</p> 
-                            </div>
-                        </div>
+                  <div className="col-lg-3 col-md-4">
+                    <div className="user-div">
+                      <h4 className="user3-details profile-head profile-detail">
+                        Personal Details
+                      </h4>
+                      <img
+                        className="user-img"
+                        src={publicUrl + "assets/img/user.png"}
+                        alt=""
+                      />
+                      <div className="user3-details">
+                        <p>
+                          <span className="user-title">Name:</span> {user.name}
+                        </p>
+                        <p>
+                          <span className="user-title">E-Mail:</span>{" "}
+                          {user.email}
+                        </p>
+                      </div>
                     </div>
-                    <div className="col-lg-9 col-md-8 margin-top-10 align-center">
-                      <div className="row user-div user3-details justify-content-center">
+                  </div>
+                  <div className="col-lg-9 col-md-8 margin-top-10 align-center">
+                    <div className="row user-div user3-details justify-content-center">
                       <div className="col-xl-6 col-lg-5 col-md-6 col-sm-8 col-12">
-                  <div className="account-wall div-border">
-                  {/* <i class="fa fa-key register-user" aria-hidden="true"></i> */}
-                    <h3 className="pb-2">Change Password</h3>
-                    <Form
-                      name="normal_login"
-                      className="login-form"
-                      initialValues={{ remember: true }}
-                      onFinish={this.onFinish}
-                    >
-                      <Form.Item
-                        name="old_password"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your Old Password!",
-                          },
-                        ]}
-                      >
-                        <Input
-                          prefix={
-                            <LockOutlined className="site-form-item-icon" />
-                          }
-                          type="password"
-                          placeholder="Old Password"
-                        />
-                      </Form.Item>
-                      <Form.Item
-                        name="password"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your Password!",
-                          },
-                        ]}
-                      >
-                        <Input
-                          prefix={
-                            <LockOutlined className="site-form-item-icon" />
-                          }
-                          type="password"
-                          placeholder="Password"
-                        />
-                      </Form.Item>
-                      <Form.Item
-                        name="confirmPassword"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your Confirm Password!",
-                          },
-                          ({ getFieldValue }) => ({
-                            validator(_, value) {
-                              if (
-                                !value ||
-                                getFieldValue("password") === value
-                              ) {
-                                return Promise.resolve();
-                              }
-                              return Promise.reject(
-                                new Error(
-                                  "The two passwords that you entered do not match!"
-                                )
-                              );
-                            },
-                          }),
-                        ]}
-                      >
-                        <Input
-                          prefix={
-                            <LockOutlined className="site-form-item-icon" />
-                          }
-                          type="password"
-                          placeholder="Confirm Password"
-                        />
-                      </Form.Item>
-                      <Form.Item>
-                        <Button
-                          block
-                          type="danger"
-                          htmlType="submit"
-                          className="btn btn-style-1"
-                        >
-                          Submit
-                        </Button>
-                      </Form.Item>
-                    </Form>
+                        <div className="account-wall div-border">
+                          {/* <i class="fa fa-key register-user" aria-hidden="true"></i> */}
+                          <h3 className="pb-2">Change Password</h3>
+                          <Form
+                            name="normal_login"
+                            className="login-form"
+                            initialValues={{ remember: true }}
+                            onFinish={this.onFinish}
+                          >
+                            <Form.Item
+                              name="old_password"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input your Old Password!",
+                                },
+                              ]}
+                            >
+                              <Input
+                                prefix={
+                                  <LockOutlined className="site-form-item-icon" />
+                                }
+                                type="password"
+                                placeholder="Old Password"
+                              />
+                            </Form.Item>
+                            <Form.Item
+                              name="password"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input your Password!",
+                                },
+                              ]}
+                            >
+                              <Input
+                                prefix={
+                                  <LockOutlined className="site-form-item-icon" />
+                                }
+                                type="password"
+                                placeholder="Password"
+                              />
+                            </Form.Item>
+                            <Form.Item
+                              name="confirmPassword"
+                              rules={[
+                                {
+                                  required: true,
+                                  message:
+                                    "Please input your Confirm Password!",
+                                },
+                                ({ getFieldValue }) => ({
+                                  validator(_, value) {
+                                    if (
+                                      !value ||
+                                      getFieldValue("password") === value
+                                    ) {
+                                      return Promise.resolve();
+                                    }
+                                    return Promise.reject(
+                                      new Error(
+                                        "The two passwords that you entered do not match!"
+                                      )
+                                    );
+                                  },
+                                }),
+                              ]}
+                            >
+                              <Input
+                                prefix={
+                                  <LockOutlined className="site-form-item-icon" />
+                                }
+                                type="password"
+                                placeholder="Confirm Password"
+                              />
+                            </Form.Item>
+                            <Form.Item>
+                              <Button
+                                block
+                                type="danger"
+                                htmlType="submit"
+                                className="btn btn-style-1"
+                              >
+                                Submit
+                              </Button>
+                            </Form.Item>
+                          </Form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                      </div>
-                    </div>			
-                  </div>  
                 <br />
               </div>
             </div>

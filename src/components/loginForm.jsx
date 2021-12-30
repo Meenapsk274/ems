@@ -25,13 +25,10 @@ class LoginForm extends Component {
     try {
       const response = await authServices.checkUser(values);
       if (response.status >= 200) {
-        if (response.data &&
-          response.data[0] &&
-          response.data[0].status == 0
-        ) {
+        if (response.data && response.data[0] && response.data[0].status == 0) {
           message.error({
             content: "Invalid email or password",
-            duration: 10,
+            duration: 5,
             className: "ant-message-error-bg",
             style: {
               marginTop: "40vh",
