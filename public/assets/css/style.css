@@ -2552,7 +2552,7 @@ ul {
   transition: all 0.3s;
   top: 52%;
   border: 0px;
-   
+  opacity: 0;
 }
 .banner-style-01 .slick-prev {
   left: 60px;
@@ -10427,4 +10427,7 @@ button {
 }
 .change_link{
   text-decoration: underline;
+}
+.hcolor-white:hover{
+  color: white;
 }

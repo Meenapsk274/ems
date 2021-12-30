@@ -34,7 +34,7 @@ class FounderDetails extends Component {
                             <div className="user3-details">
                                 <p><span className="user-title">Name:</span> {user.name}</p>
                                 <p><span className="user-title">E-Mail:</span> {user.email}</p>
-                                <a className="change_link" href="#/change_password">Change password</a>
+                                <a className="change_link" href="#/change_password">Change password?</a>
                             </div>
 
                         </div>
@@ -174,6 +174,12 @@ class FounderDetails extends Component {
                               </div>
                               <div className="col-lg-6 col-md-6 col-6">
                                <p className="user-title1 "> {user.present_address}</p>
+                              </div>
+                              <div className="col-lg-6 col-md-6 col-6">
+                               
+                              </div>
+                              <div className="col-lg-6 col-md-6 col-6">
+                                <a href="#/edit_bio" className="btn btn-blue hcolor-white"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
                               </div>
                             </div>
                             

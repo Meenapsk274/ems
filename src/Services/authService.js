@@ -39,9 +39,10 @@ export async function savePassword(user) {
 }
 export async function changePassword(user) {
   return http.post(`${apiUrl}change_password.php`, {
-    id: user.id,
+
     old_password: user.old_password,
     password: user.password,
+    userid: user.userid,
   });
 }
 export async function sendSubscriberEmail(user) {

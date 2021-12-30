@@ -25,6 +25,7 @@ import Register from "./components/registerForm";
 import WebTv from "./components/webTv";
 import Forgot from "./components/forgot";
 import ChangePassword from "./components/change_password";
+import EditBio from "./components/edit_bio";
 import ProfileDetails from "./components/profile";
 
 import GetEmail from "./components/getemail";
@@ -56,6 +57,7 @@ class Root extends Component {
               <Route path="/register" component={Register} />
               <Route path="/forgot" component={Forgot} />
               <Route path="/change_password" component={ChangePassword} />
+              <Route path="/edit_bio" component={EditBio} />
               <Route path="/getemail" component={GetEmail} />
               <Route
                 exact

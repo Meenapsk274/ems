@@ -36,7 +36,14 @@ class RegisterForm extends Component {
       dateOfBirth: "",
       dateOfBaiyath: "",
       username: "",
+      user: {}
     };
+    
+  }
+  async componentDidMount() {
+    const user = localStorage.getItem("user");
+    this.setState({ user: JSON.parse(user) });
+    console.log(user);
   }
   selectCountry(val) {
     this.setState({ country: val });
@@ -101,17 +108,6 @@ class RegisterForm extends Component {
       },
     });
   };
-  failure = () => {
-    message.success({
-      content:
-        "Try Again!",
-      duration: 10,
-      className: "custom-class",
-      style: {
-        marginTop: "40vh",
-      },
-    });
-  };
   onFinish = async (values) => {
     values.dateOfBirth = this.state.dateOfBirth;
     values.dateOfBaiyath = this.state.dateOfBaiyath;
@@ -121,21 +117,12 @@ class RegisterForm extends Component {
       if (response.status >= 200) {
         // if (response.data === 1) {
         console.log("success");
-        if (response.data.status === "1") {
-          this.success();
-          this.props.history.push("/login");
-        }
-        if (response.data.status === "0") {
-          this.failure();
-          this.props.history.push("/register");
-        }
-        
+        this.success();
+        this.props.history.push("/login");
         // } else {
       } else {
         this.props.history.push("/register");
       }
-     
-
     } catch (ex) {
       const errors = { ...this.state.errors };
       // errors.name = ex.response.data;
@@ -144,22 +131,32 @@ class RegisterForm extends Component {
   };
 
   render() {
+    const { user } = this.state;
     const qualification = ["S.S.L.C", "Engineer", "UG", "PG", "Doctorate[Phd]"];
     const bloodGroup = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
     const { country, region, username } = this.state;
+    let publicUrl = process.env.PUBLIC_URL + "/";
     return (
       <div>
         <Navbar />
         <PageHeader headertitle="Register" />
         <section className="loginBlock">
           <div className="container">
-            <div className="row register-form">
-              <div className="col-xl-2 col-lg-1"></div>
-              <div className="col-xl-8 col-lg-10 col-md-12">
+            <div className="row register-form margin-top-40 justify-content-center">
+            <div className="col-xl-3 col-lg-4 col-md-6 ">
+                <div className="user-div margin-top-20">
+                    <h4 className="user3-details profile-head profile-detail">Personal Details</h4>
+                    <img className="user-img" src={publicUrl + "assets/img/user.png"} alt=""/>
+                    <div className="user3-details">
+                        <p><span className="user-title">Name:</span>{user.name}</p>
+                        <p><span className="user-title">E-Mail:</span> {user.email}</p> 
+                    </div>
+                </div>
+            </div>
+              <div className="col-xl-9 col-lg-8 col-md-12">
                 <div className="account-wall div-border" id="register_form">
-                  <i className="fas fa-user-plus register-user"></i>
-
-                  <h3 className="text-center">Create Your EMS Account</h3>
+                
+                  <h3 className="text-center">Add Your Account Details</h3>
                   <Form
                     name="register"
                     onFinish={this.onFinish}
@@ -170,14 +167,14 @@ class RegisterForm extends Component {
                     scrollToFirstError
                   >
                     <div className="row">
-                      <div className="col-lg-6 col-md-6">
+                    <div className="col-lg-6 col-md-6">
                         <Form.Item
-                          name="name"
-                          label="Name"
+                          name="fatherName"
+                          label="Father Name"
                           rules={[
                             {
                               required: true,
-                              message: "Please input your Name!",
+                              message: "Please input your Father Name!",
                             },
                           ]}
                           hasFeedback
@@ -211,22 +208,7 @@ class RegisterForm extends Component {
                       </div>
                     </div>
 
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="fatherName"
-                          label="Father Name"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your Father Name!",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
+                    <div className="row"> 
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
                           name="ug"
@@ -234,18 +216,6 @@ class RegisterForm extends Component {
                           hasFeedback
                         >
                           <Input />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="dateOfBirth"
-                          label="Date Of Birth"
-                          hasFeedback
-                        >
-                          <DatePicker onChange={this.handleBirthChange} />
                         </Form.Item>
                       </div>
                       <div className="col-lg-6 col-md-6">
@@ -258,7 +228,6 @@ class RegisterForm extends Component {
                         </Form.Item>
                       </div>
                     </div>
-
                     <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
@@ -285,7 +254,6 @@ class RegisterForm extends Component {
                         </Form.Item>
                       </div>
                     </div>
-
                     <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
@@ -321,7 +289,6 @@ class RegisterForm extends Component {
                         </Form.Item>
                       </div>
                     </div>
-
                     <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
@@ -342,7 +309,6 @@ class RegisterForm extends Component {
                         </Form.Item>
                       </div>
                     </div>
-
                     <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <Form.Item
@@ -384,82 +350,11 @@ class RegisterForm extends Component {
                         </Form.Item>
                       </div>
                     </div>
-
                     <div className="row">
                       <div className="col-md-6">
                         <Form.Item
                           name="city"
                           label="City(Currently Residing)"
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
-                      <div className="col-md-6">
-                        <Form.Item
-                          name="username"
-                          label="User Name"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your username!",
-                            },
-                          ]}
-                        >
-                          <Input
-                            value={username}
-                            onBlur={(e) => this.checkUsername(e.target.value)}
-                          />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-md-6 ">
-                        <Form.Item
-                          name="email"
-                          label="E-mail"
-                          rules={[
-                            {
-                              type: "email",
-                              message: "The input is not valid E-mail!",
-                            },
-                            {
-                              required: true,
-                              message: "Please input your E-mail!",
-                            },
-                          ]}
-                        >
-                          <Input
-                            onBlur={(e) => this.checkEmail(e.target.value)}
-                          />
-                        </Form.Item>
-                      </div>
-                      <div className="col-md-6">
-                        <Form.Item
-                          name="password"
-                          label="Password"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your password!",
-                            },
-                            {
-                              min: 6,
-                              message: "Password should be minimum 6 chars",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <Input.Password />
-                        </Form.Item>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="contactNo"
-                          label="Contact Number"
                           hasFeedback
                         >
                           <Input />
@@ -484,19 +379,9 @@ class RegisterForm extends Component {
                             htmlType="submit"
                             className="btn btn-block btn-style-1 register-btn"
                           >
-                            Register
+                            SUBMIT
                           </Button>
                         </center>
-                      </Form.Item>
-                    </div>
-                    <div className="row text-center">
-                      <Form.Item>
-                        <span className="text-center new-account ">
-                          Already have an account?{" "}
-                          <a href="#/login" className="login-text-style">
-                            Login
-                          </a>
-                        </span>
                       </Form.Item>
                     </div>
                   </Form>

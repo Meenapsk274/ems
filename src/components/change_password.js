@@ -17,9 +17,15 @@ class ChangePassword extends Component {
         old_password: "",
         password: "",
       },
+      user: {},
       errors: {},
       value: 2,
     };
+  }
+  async componentDidMount() {
+    const user = localStorage.getItem("user");
+    this.setState({ user: JSON.parse(user) });
+    console.log(user);
   }
   success = () => {
     message.success({
@@ -36,12 +42,14 @@ class ChangePassword extends Component {
 
     values.id = queries.id;
 
+    values.userid = this.state.user.id;
+
     try {
       const response = await authServices.changePassword(values);
       if (response.status >= 200) {
         console.log("success");
         this.success();
-        this.props.history.push("/login");
+        this.props.history.push("/change_password");
         // } else {
       } else {
         this.props.history.push("/change_password");
@@ -55,6 +63,7 @@ class ChangePassword extends Component {
 
   render() {
     let publicUrl = process.env.PUBLIC_URL + "/";
+    const { user } = this.state;
     return (
       <div>
         <Navbar />
@@ -67,11 +76,11 @@ class ChangePassword extends Component {
                 <div className="row">
                     <div className="col-lg-3 col-md-4">
                         <div className="user-div">
-                        <h4 className="user3-details profile-head profile-detail">Personal Details</h4>
+                          <h4 className="user3-details profile-head profile-detail">Personal Details</h4>
                             <img className="user-img" src={publicUrl + "assets/img/user.png"} alt=""/>
                             <div className="user3-details">
-                              <p><span className="user-title">Name:</span> example name</p>
-                              <p><span className="user-title">E-Mail:</span> example@gmail.com</p> 
+                              <p><span className="user-title">Name:</span> {user.name}</p>
+                              <p><span className="user-title">E-Mail:</span> {user.email}</p> 
                             </div>
                         </div>
                     </div>
@@ -79,7 +88,7 @@ class ChangePassword extends Component {
                       <div className="row user-div user3-details justify-content-center">
                       <div className="col-xl-6 col-lg-5 col-md-6 col-sm-8 col-12">
                   <div className="account-wall div-border">
-                  <i class="fa fa-key register-user" aria-hidden="true"></i>
+                  {/* <i class="fa fa-key register-user" aria-hidden="true"></i> */}
                     <h3 className="pb-2">Change Password</h3>
                     <Form
                       name="normal_login"
