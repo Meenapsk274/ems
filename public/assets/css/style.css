@@ -10408,6 +10408,36 @@ button {
   height: 40px;
   padding: 6px;
 }
+@media (min-width: 600px) {
+.quiz_content{
+  background: #f4f4f4;
+  width: 100%;
+  margin: 0;
+  height: 40px;
+  padding: 6px;
+}
+}
+@media (max-width: 600px) {
+
+  .quiz_content {
+    background: #f4f4f4;
+    width: 100%;
+    margin: 0;
+    min-height: 40px;
+    padding: 9px 2px;
+}
+}
+
+.quiz_text{
+  text-align: center;
+    color: #562f70;
+    font-weight: bold;
+    font-size: 15px;
+}
+.sub_quiz{
+  font-size: 11px;
+  color: #333;
+}
 
 .news_line{
   color:white !important;

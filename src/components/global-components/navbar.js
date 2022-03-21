@@ -246,6 +246,19 @@ class Navbar extends Component {
                 </div>
               </div>
             </div>
+            <div className="col-12 container-fluid">
+              <div className="quiz_content">
+                <div className="row justify-content-center">
+                <a href="https://emsmedia.net/quiz/" target="_blank">
+                  <center>
+                    <span className="quiz_text">இஸ்லாமிய வினா-விடைப் போட்டி</span>
+                     <br></br>
+                     <span className="sub_quiz">( மதரஸத்துல் ஹஸனைன் பீ ஜாமியா யாசீன் அறபுக்கல்லூரி )</span>
+                     </center>
+                     </a>
+                </div>
+              </div>
+            </div>
               <nav className="navbar navbar-area navbar-expand-lg nav-style-01 hide-tab ">
                   <div className="container-fluid nav-container">
                     <div className="row">
@@ -350,6 +363,15 @@ class Navbar extends Component {
                   <span className="news_line">|</span></span>
                   ))} 
                   </marquee>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 padding_0  hide-mobile-view tab-hide">
+              <div className="quiz_content">
+                <div className="row justify-content-center">
+                  <div className="col-xl-10 col-sm-12">
+                      <a href="https://emsmedia.net/quiz/" target="_blank"><span class="quiz_text"><center>இஸ்லாமிய வினா-விடைப் போட்டி - ( மதரஸத்துல் ஹஸனைன் பீ ஜாமியா யாசீன் அறபுக்கல்லூரி )</center></span></a>
                   </div>
                 </div>
               </div>
