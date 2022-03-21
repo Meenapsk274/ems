@@ -91,7 +91,7 @@ class EditBio extends Component {
     try {
       const response = await authServices.editUser(values);
       if (response.status >= 200) {
-        if (response.data === 1) {
+        if (response.data.status === 1) {
           console.log("success");
           this.success();
           this.props.history.push("/profile");
@@ -151,11 +151,12 @@ class EditBio extends Component {
                         <Form.Item
                           name="fatherName"
                           label="Father Name"
-                          value={user.father_name}
+                          value={user.name}
                           rules={[
                             {
                               required: true,
                               message: "Please input your Father Name!",
+                              
                             },
                           ]}
                           hasFeedback

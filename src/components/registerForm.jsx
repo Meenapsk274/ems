@@ -154,8 +154,8 @@ class RegisterForm extends Component {
         <section className="loginBlock">
           <div className="container">
             <div className="row register-form">
-              <div className="col-xl-2 col-lg-1"></div>
-              <div className="col-xl-8 col-lg-10 col-md-12">
+              
+              <div className="col-xl-6 col-lg-6 col-md-12 offset-lg-3">
                 <div className="account-wall div-border" id="register_form">
                   <i className="fas fa-user-plus register-user"></i>
 
@@ -170,7 +170,7 @@ class RegisterForm extends Component {
                     scrollToFirstError
                   >
                     <div className="row">
-                      <div className="col-lg-6 col-md-6">
+                      <div className="col-lg-12 col-md-12">
                         <Form.Item
                           name="name"
                           label="Name"
@@ -185,61 +185,7 @@ class RegisterForm extends Component {
                           <Input />
                         </Form.Item>
                       </div>
-                      <div className="col-md-6">
-                        <Form.Item
-                          name="qualification"
-                          label="Qualification"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please select your qualification!",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <Select
-                            className="ant-input"
-                            placeholder="select your qualification"
-                          >
-                            {qualification.map((qualification, i) => (
-                              <Option key={i} value={qualification}>
-                                {qualification}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="fatherName"
-                          label="Father Name"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your Father Name!",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="ug"
-                          label="UG Specialization"
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
+                      <div className="col-lg-12 col-md-12">
                         <Form.Item
                           name="dateOfBirth"
                           label="Date Of Birth"
@@ -248,174 +194,9 @@ class RegisterForm extends Component {
                           <DatePicker onChange={this.handleBirthChange} />
                         </Form.Item>
                       </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="pg"
-                          label="PG Specialization"
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
                     </div>
-
                     <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="dateOfBaiyath"
-                          label="Date Of Baiyath"
-                          hasFeedback
-                        >
-                          <DatePicker onChange={this.handleBaiyathChange} />
-                        </Form.Item>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item name="bloodGroup" label="Blood Group">
-                          <Select
-                            className="ant-input"
-                            placeholder="select your blood group"
-                            hasFeedback
-                          >
-                            {bloodGroup.map((bg, j) => (
-                              <Option key={j} value={bg}>
-                                {bg}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="gender"
-                          label="Gender"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please select your gender!",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <Select
-                            className="ant-input"
-                            placeholder="select your gender"
-                          >
-                            <Option value="male">Male</Option>
-                            <Option value="female">Female</Option>
-                          </Select>
-                        </Form.Item>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="yaseeni"
-                          label="Are you a Yaseeni ?"
-                          hasFeedback
-                        >
-                          <Select className="ant-input" placeholder="select">
-                            <Option value="1">Yes</Option>
-                            <Option value="0">No</Option>
-                          </Select>
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="presentAddress"
-                          label="Present Address"
-                          hasFeedback
-                        >
-                          <Input.TextArea />
-                        </Form.Item>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="permanentAddress"
-                          label="Permanent Address"
-                          hasFeedback
-                        >
-                          <Input.TextArea />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="country"
-                          label="Country(Currently Residing)"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please select your Country!",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <CountryDropdown
-                            value={country}
-                            onChange={(val) => this.selectCountry(val)}
-                          />
-                        </Form.Item>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="state"
-                          label="State(Currently Residing)"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please select your State!",
-                            },
-                          ]}
-                          hasFeedback
-                        >
-                          <RegionDropdown
-                            blankOptionLabel="No country selected"
-                            defaultOptionLabel="Now select a region"
-                            country={country}
-                            value={region}
-                            onChange={(val) => this.selectRegion(val)}
-                          />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-md-6">
-                        <Form.Item
-                          name="city"
-                          label="City(Currently Residing)"
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
-                      <div className="col-md-6">
-                        <Form.Item
-                          name="username"
-                          label="User Name"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your username!",
-                            },
-                          ]}
-                        >
-                          <Input
-                            value={username}
-                            onBlur={(e) => this.checkUsername(e.target.value)}
-                          />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-md-6 ">
+                    <div className="col-md-12 ">
                         <Form.Item
                           name="email"
                           label="E-mail"
@@ -435,7 +216,28 @@ class RegisterForm extends Component {
                           />
                         </Form.Item>
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-12">
+                        <Form.Item
+                          name="username"
+                          label="User Name"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your username!",
+                            },
+                          ]}
+                        >
+                          <Input
+                            value={username}
+                            onBlur={(e) => this.checkUsername(e.target.value)}
+                          />
+                        </Form.Item>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      
+                      <div className="col-md-12">
                         <Form.Item
                           name="password"
                           label="Password"
@@ -454,9 +256,7 @@ class RegisterForm extends Component {
                           <Input.Password />
                         </Form.Item>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
+                      <div className="col-lg-12 col-md-12">
                         <Form.Item
                           name="contactNo"
                           label="Contact Number"
@@ -465,16 +265,8 @@ class RegisterForm extends Component {
                           <Input />
                         </Form.Item>
                       </div>
-                      <div className="col-lg-6 col-md-6">
-                        <Form.Item
-                          name="alternateNo"
-                          label="Alternate Number"
-                          hasFeedback
-                        >
-                          <Input />
-                        </Form.Item>
-                      </div>
                     </div>
+                   
                     <div className="row">
                       <Form.Item>
                         <center>
