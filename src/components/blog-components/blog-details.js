@@ -47,6 +47,7 @@ class BlogDetails extends React.Component {
                 <div className="col-md-12">
                   <div className="blog-content">
                     <h2>{this.toCamelCase(title)}</h2>
+                    <img src="assets/img/media.jpg"></img>
                     {/* {renderHTML({ blog })} */}
                     <div
                       dangerouslySetInnerHTML={{

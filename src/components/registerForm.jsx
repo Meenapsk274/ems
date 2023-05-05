@@ -121,7 +121,7 @@ class RegisterForm extends Component {
       if (response.status >= 200) {
         // if (response.data === 1) {
         console.log("success");
-        if (response.data.status === "1") {
+        if (response.datanpm === "1") {
           this.success();
           this.props.history.push("/login");
         }

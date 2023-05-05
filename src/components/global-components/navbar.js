@@ -1,9 +1,10 @@
 import { array } from "joi";
 import React, { Component } from "react";
 import { Fragment } from "react";
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, Modal } from "antd";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import * as homeServices from "../../Services/home-page-services";
+
 
 class Navbar extends Component {
   state = {
@@ -61,6 +62,9 @@ class Navbar extends Component {
   }
 
   render() {
+
+    
+
     const { menus } = this.state;
     const { moto } = this.state;
     const mainMenu = Object.keys(menus);
@@ -74,7 +78,6 @@ class Navbar extends Component {
             <div className="container">
               <div className="row ">
                 <div
-                  className=""
                   className="col-xl-5 col-lg-4 col-md-5 col-12 mt-1 hide-mobile-view"
                 >
                   <span>
@@ -115,8 +118,8 @@ class Navbar extends Component {
                 </div>
                 <div className="col-lg-6 col-md-6 col-12 hide-large-view">
                   <div className="row mobile-tv">
-                    <div className="col-4">
-                      <a
+                    <div  className="col-4">
+                     <a
                         className="top-content-size color-white"
                         href="#/login"
                       >
@@ -158,7 +161,7 @@ class Navbar extends Component {
           </div>
           <div className="container-fluid logo-bg-color">
             <div className="row">
-              <div className="col-xl-8 col-lg-5  hide-mobile-view tab-hide">
+              <div className="col-xl-5 col-lg-5  hide-mobile-view tab-hide">
                 <div className="logo">
                   <a href="/">
                     <img
@@ -170,7 +173,17 @@ class Navbar extends Component {
                 </div>
               </div>
 
-              <div className="col-xl-4 col-lg-5">
+              <div className="col-xl-4 col-lg-4  hide-mobile-view tab-hide">
+              {/*<a href="https://www.youtube.com/watch?v=AoDnNb0OYVs" target="_blank">
+                    <img
+                      className="logo-img"
+                      src={publicUrl + "assets/img/umar.jpg"}
+                      alt="EMS Media"
+                    />
+    </a>*/}
+              </div>
+
+              <div className="col-xl-3 col-lg-3">
                 <form>
                   <div className="form-group searchbox hide-mobile-view tab-hide">
                     <div className="input-icons input-size">
@@ -197,6 +210,15 @@ class Navbar extends Component {
                       alt="EMS Media"
                     />
                   </a>
+
+                  {/*<a href="https://www.youtube.com/watch?v=AoDnNb0OYVs" target="_blank">
+                    <img
+                      className="logo-img"
+                      src={publicUrl + "assets/img/umar.jpg"}
+                      alt="EMS Media"
+                    />
+    </a>*/}
+
                 </div>
               </div>
 
@@ -246,19 +268,7 @@ class Navbar extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-12 container-fluid">
-              <div className="quiz_content">
-                <div className="row justify-content-center">
-                <a href="https://emsmedia.net/quiz/" target="_blank">
-                  <center>
-                    <span className="quiz_text">இஸ்லாமிய வினா-விடைப் போட்டி</span>
-                     <br></br>
-                     <span className="sub_quiz">( மதரஸத்துல் ஹஸனைன் பீ ஜாமியா யாசீன் அறபுக்கல்லூரி )</span>
-                     </center>
-                     </a>
-                </div>
-              </div>
-            </div>
+            
               <nav className="navbar navbar-area navbar-expand-lg nav-style-01 hide-tab ">
                   <div className="container-fluid nav-container">
                     <div className="row">
@@ -347,15 +357,7 @@ class Navbar extends Component {
             </div>
           </div>
 
-          <div className="col-12 padding_0  hide-mobile-view tab-hide">
-              <div className="quiz_content">
-                <div className="row justify-content-center">
-                  <div className="col-xl-10 col-sm-12">
-                      <a href="https://emsmedia.net/quiz/" target="_blank"><span class="quiz_text"><center>இஸ்லாமிய வினா-விடைப் போட்டி - ( மதரஸத்துல் ஹஸனைன் பீ ஜாமியா யாசீன் அறபுக்கல்லூரி )</center></span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
+        
             
           <div className="col-12 padding_0">
               <div className="news_content">
@@ -481,7 +483,7 @@ function AuthLinks() {
   }
 
   return (
-    <Fragment>
+   <Fragment>
       <Link to="/login" className="top-content-size color-white">
         <i className="fas fa-sign-in-alt"></i> Login
       </Link>
@@ -489,7 +491,10 @@ function AuthLinks() {
       <Link to="/register" className="top-content-size color-white tab-hide">
         <i className="fas fa-user-plus"></i> Register
       </Link>
-    </Fragment>
+
+
+
+  </Fragment>  
   );
 }
 
