@@ -3,11 +3,18 @@ import { Link, useLocation } from "react-router-dom";
 import Comments from "./comments";
 import * as homeServices from "../../Services/home-page-services";
 
+function camelCase(s) {
+  return s.replace(/\w\S*/g, function (t) {
+    return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase();
+  });
+}
+
 class BlogDetails extends React.Component {
   state = {
     blog: "",
     title: "",
   };
+
   async componentDidMount() {
     const blogTitle = this.props.blogTitle;
 
@@ -15,6 +22,8 @@ class BlogDetails extends React.Component {
     if (response.status >= 200) {
       this.setState({ blog: response.data });
     }
+    let blogTitleNew = camelCase(blogTitle.replace("_", " "));
+    document.title = blogTitleNew;
   }
   async componentDidUpdate() {
     const blogTitle = this.props.blogTitle;
@@ -23,13 +32,15 @@ class BlogDetails extends React.Component {
     if (response.status >= 200) {
       this.setState({ blog: response.data });
     }
+    let blogTitleNew = camelCase(blogTitle.replace("_", " "));
+    document.title = blogTitleNew;
   }
+
   toCamelCase(s) {
     return s.replace(/\w\S*/g, function (t) {
       return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase();
     });
   }
-
   render() {
     let publicUrl = process.env.PUBLIC_URL + "/";
     let imagealt = "image";
